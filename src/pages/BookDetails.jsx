@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { addToStoredBook } from '../utility/AddtoDb';
+import Swal from 'sweetalert2';
 
 const BookDetails = () => {
     const boobsData=useLoaderData()
@@ -22,8 +23,9 @@ const BookDetails = () => {
   } = matchedData;
 
   const handleMarkAsRead =id=>{
-console.log(id)
+
  addToStoredBook(id)
+ 
   }
  
     return (
