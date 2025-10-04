@@ -1,20 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import "./Nav.css"
 
 const Navbar = () => {
     const link = (
-      <>
+      < >
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
+        <li>
+          <NavLink to="/readList">ReadList</NavLink>
+        </li>
       </>
     );
     return (
-      <div>
+      <nav>
         <div className="navbar bg-base-100 shadow-sm">
           <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -55,7 +58,7 @@ const Navbar = () => {
             
           </div>
         </div>
-      </div>
+      </nav>
     );
 };
 

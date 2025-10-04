@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import BookDetails from "../pages/BookDetails";
 /* import Book from "../pages/Book"; */
+import ReadlList from './../pages/ReadlList';
 
 
  const route = createBrowserRouter([
@@ -25,6 +26,11 @@ import BookDetails from "../pages/BookDetails";
          path: "/bookDetails/:id",
          loader: () => fetch("/public/booksData.json"),
          element: <BookDetails />,
+       },
+       {
+         path: "/readList",
+         loader: () => fetch("/public/booksData.json"),
+         element: <ReadlList />,
        },
      ],
    },
