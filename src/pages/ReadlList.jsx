@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { getStoredBook } from "../utility/AddtoDb";
+import { getStoredBook, getStoredWish } from "../utility/AddtoDb";
 import Book from "./Book";
+
 const ReadlList = () => {
     const [sort,setSort]=useState("")
 const [readList,setReadList]=useState([])
+const [wishList, setWishList] = useState([]);
     const data=useLoaderData();
     
 useEffect(()=>{
   const readLocalData = getStoredBook();
+  const wishLocalData = getStoredWish();
   const localReadData = readLocalData.map((e) => Number(e));
+  const localwishData = wishLocalData.map((e) => Number(e));
    const allReadData = data.filter((book) =>
      localReadData.includes(book.bookId)
    );
+
+   const allwishData = data.filter((book) =>
+     localwishData.includes(book.bookId)
+   );
 setReadList(allReadData);
+setWishList(allwishData);
+
  
 },[])
     
@@ -66,7 +76,12 @@ if (type === "ratings") {
           </div>
         </TabPanel>
         <TabPanel>
-          <h2>My WishList</h2>
+          <h2>My WishList: {wishList.length}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
+            {wishList.map((e) => (
+              <Book key={e.bookId} bookdetail={e} />
+            ))}
+          </div>
         </TabPanel>
       </Tabs>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
-import { addToStoredBook } from '../utility/AddtoDb';
+import { addToStoredBook, addToWishdBook } from '../utility/AddtoDb';
 import Swal from 'sweetalert2';
 
 const BookDetails = () => {
@@ -27,6 +27,10 @@ const BookDetails = () => {
  addToStoredBook(id)
  
   }
+ 
+  const handleMarkWishData = (id) => {
+    addToWishdBook(id);
+  };
  
     return (
       <div className="hero  min-h-screen">
@@ -71,10 +75,18 @@ const BookDetails = () => {
               </p>
             </div>
             <div className="flex gap-2 ">
-              <button onClick={()=>handleMarkAsRead(id)} className="btn btn-outline">
+              <button
+                onClick={() => handleMarkAsRead(id)}
+                className="btn btn-outline"
+              >
                 Rate
               </button>
-              <button className="btn btn-primary">WishList</button>
+              <button
+                onClick={() => handleMarkWishData(id)}
+                className="btn btn-primary"
+              >
+                WishList
+              </button>
             </div>
           </div>
         </div>
