@@ -6,21 +6,21 @@ const Navbar = () => {
 
     const link = (
       <>
-        <li>
+        <li className="mr-5 mb-2">
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
+        <li className="mr-5 mb-2">
           <NavLink to="/about">About</NavLink>
         </li>
-        <li>
+        <li className="mr-5 mb-2">
           <NavLink to="/readList">AllList </NavLink>
         </li>
       </>
     );
     return (
-      <nav>
-        <div className="navbar bg-base-100 shadow-sm">
-          <div className="navbar bg-base-100 shadow-sm">
+      <nav className="bg-gray-100 sticky top-0 z-50">
+        <div className="navbar ">
+          <div className="navbar ">
             <div className="navbar-start">
               <div className="dropdown">
                 <div
@@ -51,12 +51,11 @@ const Navbar = () => {
                   {link}
                 </ul>
               </div>
-              <a className="btn btn-ghost text-xl">daisyUI</a>
+              <a className=" text-xl">BookShop</a>
             </div>
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1">{link} </ul>
+            <div className="navbar-center hidden md:flex ">
+              <ul className="menu menu-horizontal px-1 ">{link} </ul>
             </div>
-            
           </div>
         </div>
       </nav>

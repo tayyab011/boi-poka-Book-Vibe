@@ -63,12 +63,18 @@ if (type === "ratings") {
       </div>
       <Tabs>
         <TabList>
-          <Tab>ReadList</Tab>
-          <Tab>WishList</Tab>
+          <Tab>
+            {" "}
+            <span className="font-bold">ReadList</span>{" "}
+          </Tab>
+          <Tab>
+            {" "}
+            <span className="font-bold">WishList</span>{" "}
+          </Tab>
         </TabList>
 
         <TabPanel>
-          <h2>ReadBook List: {readList.length}</h2>
+          <h2 className="font-bold">ReadBook List: {readList.length}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
             {readList.map((e) => (
               <Book key={e.bookId} bookdetail={e} />
@@ -76,7 +82,7 @@ if (type === "ratings") {
           </div>
         </TabPanel>
         <TabPanel>
-          <h2>My WishList: {wishList.length}</h2>
+          <h2 className="font-bold">My WishList: {wishList.length}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
             {wishList.map((e) => (
               <Book key={e.bookId} bookdetail={e} />
