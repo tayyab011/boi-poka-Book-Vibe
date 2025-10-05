@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./Nav.css"
+import { ReadContext } from '../pages/Root';
 
 const Navbar = () => {
-
+ const { readCount, wishCount } = useContext(ReadContext);
     const link = (
       <>
         <li className="mr-5 mb-2">
@@ -13,7 +14,10 @@ const Navbar = () => {
           <NavLink to="/about">About</NavLink>
         </li>
         <li className="mr-5 mb-2">
-          <NavLink to="/readList">AllList </NavLink>
+          <NavLink to="/readList">ReadList {readCount?.length}</NavLink>
+        </li>
+        <li className="mr-5 mb-2">
+          <NavLink to="/wishList">WishList {wishCount?.length}</NavLink>
         </li>
       </>
     );

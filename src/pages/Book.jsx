@@ -25,7 +25,7 @@ const Book = ({ bookdetail }) => {
         </figure>
         <div className="card-body">
           <div className="flex justify-center gap-3">
-            {tags.map((e) => {
+            {tags?.map((e) => {
               return (
                 <button className="btn btn-secondary hover:btn-ghost">
                   {e}

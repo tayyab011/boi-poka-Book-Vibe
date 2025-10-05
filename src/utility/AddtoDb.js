@@ -39,7 +39,10 @@ export const addToStoredBook = (id) => {
     storedBookData.push(id);
     const data = JSON.stringify(storedBookData);
     localStorage.setItem("readList",data);
-    console.log(storedBookData);
+   setTimeout(()=>{
+     window.location.reload();
+   },2000)
+  
   }
 };
 
@@ -82,6 +85,8 @@ export const addToWishdBook = (id) => {
     storedData.push(id);
     const datas = JSON.stringify(storedData);
     localStorage.setItem("wishList", datas);
-    console.log(storedData);
+       setTimeout(() => {
+         window.location.reload();
+       }, 2000);
   }
 };

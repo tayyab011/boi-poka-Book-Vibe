@@ -3,42 +3,47 @@ import { useLoaderData } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { getStoredBook, getStoredWish } from "../utility/AddtoDb";
-import Book from "./Book";
+import Book from "./Book"
+import { ReadContext } from "./Root";
 
 const ReadlList = () => {
-    const [sort,setSort]=useState("")
-const [readList,setReadList]=useState([])
-const [wishList, setWishList] = useState([]);
-    const data=useLoaderData();
-    
-useEffect(()=>{
-  const readLocalData = getStoredBook();
-  const wishLocalData = getStoredWish();
-  const localReadData = readLocalData.map((e) => Number(e));
-  const localwishData = wishLocalData.map((e) => Number(e));
-   const allReadData = data.filter((book) =>
-     localReadData.includes(book.bookId)
-   );
+  const { readCount, setReadCount, wishCount, setWishCount } = useContext(ReadContext);
 
-   const allwishData = data.filter((book) =>
-     localwishData.includes(book.bookId)
-   );
-setReadList(allReadData);
-setWishList(allwishData);
+  const [sort, setSort] = useState("");
+  /* const [readList,setReadList]=useState([]) */
+ /*  const [wishList, setWishList] = useState([]); */
+  const data = useLoaderData();
 
- 
-},[])
-    
-const handleSort=(type)=>{
+  useEffect(() => {
+    const readLocalData = getStoredBook();
+    const wishLocalData = getStoredWish();
+
+    const localReadData = readLocalData?.map((e) => Number(e));
+    const localwishData = wishLocalData?.map((e) => Number(e));
+
+    const allReadData = data?.filter((book) =>
+      localReadData.includes(book.bookId)
+    );
+
+    const allwishData = data?.filter((book) =>
+      localwishData.includes(book.bookId)
+    );
+    setReadCount(allReadData);
+    setWishCount(allwishData);
+
+    /* setReadCount(readList); */
+  }, []);
+
+  const handleSort=(type)=>{
 setSort(type)
 
 if (type === "pages") {
-  const sortedPage = [...readList].sort((a, b) => a.totalPages - b.totalPages);
-  setReadList(sortedPage);
+  const sortedPage = [...readCount]?.sort((a, b) => a.totalPages - b.totalPages);
+  setReadCount(sortedPage);
 }
 if (type === "ratings") {
-  const sortedRating = [...readList].sort((a, b) => a.rating - b.rating);
-  setReadList(sortedRating);
+  const sortedRating = [...readCount]?.sort((a, b) => b.rating - a.rating);
+  setReadCount(sortedRating);
 }
 }
 
@@ -61,7 +66,7 @@ if (type === "ratings") {
           </li>
         </ul>
       </div>
-      <Tabs>
+      {/* <Tabs>
         <TabList>
           <Tab>
             {" "}
@@ -74,22 +79,28 @@ if (type === "ratings") {
         </TabList>
 
         <TabPanel>
-          <h2 className="font-bold">ReadBook List: {readList.length}</h2>
+          <h2 className="font-bold">ReadBook List: {readCount?.length}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
-            {readList.map((e) => (
+            {readCount?.map((e) => (
               <Book key={e.bookId} bookdetail={e} />
             ))}
           </div>
         </TabPanel>
         <TabPanel>
-          <h2 className="font-bold">My WishList: {wishList.length}</h2>
+          <h2 className="font-bold">My WishList: {wishCount?.length}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
-            {wishList.map((e) => (
+            {wishCount?.map((e) => (
               <Book key={e.bookId} bookdetail={e} />
             ))}
           </div>
         </TabPanel>
-      </Tabs>
+      </Tabs> */}
+      <h2 className="font-bold">ReadBook List: {readCount?.length}</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-7 mx-4 my-5 py-5">
+        {readCount?.map((e) => (
+          <Book key={e.bookId} bookdetail={e} />
+        ))}
+      </div>
     </div>
   );
 };
