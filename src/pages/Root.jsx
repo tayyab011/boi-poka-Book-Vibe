@@ -20,13 +20,13 @@ const wishdata = { wishCount, setWishCount }; */
    setWishCount(wishLocalData );
  }, []);
     return (
-      <div className="w-11/12 mx-auto">
+      <div>
         <ReadContext.Provider
           value={{ readCount, setReadCount, wishCount, setWishCount }}
         >
           <Navbar />
 
-          <Outlet />
+          <Outlet className="w-11/12 mx-auto" />
           <Footer />
         </ReadContext.Provider>
       </div>

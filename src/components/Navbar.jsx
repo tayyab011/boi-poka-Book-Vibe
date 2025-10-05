@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import "./Nav.css"
 import { ReadContext } from '../pages/Root';
+import { CiBookmark, CiHeart } from 'react-icons/ci';
+import { FaBookmark } from 'react-icons/fa';
 
 const Navbar = () => {
  const { readCount, wishCount } = useContext(ReadContext);
@@ -14,10 +16,30 @@ const Navbar = () => {
           <NavLink to="/about">About</NavLink>
         </li>
         <li className="mr-5 mb-2">
-          <NavLink to="/readList">ReadList {readCount?.length}</NavLink>
+          <NavLink to="/readList">
+            ReadList{" "}
+            <span className="relative">
+              <span className="icons text-xl  text-red-500 font-bold ">
+                <CiBookmark />
+              </span>
+              <span className="lists absolute -top-1 left-[11px] font-bold">
+                {readCount?.length}
+              </span>
+            </span>
+          </NavLink>
         </li>
         <li className="mr-5 mb-2">
-          <NavLink to="/wishList">WishList {wishCount?.length}</NavLink>
+          <NavLink to="/wishList">
+            WishList
+            <span className="relative">
+              <span className="icons text-xl  text-red-500 font-bold ">
+                <CiHeart />
+              </span>
+              <span className="lists absolute -top-1 left-3 font-bold">
+                {wishCount?.length}
+              </span>
+            </span>
+          </NavLink>
         </li>
       </>
     );
@@ -55,7 +77,7 @@ const Navbar = () => {
                   {link}
                 </ul>
               </div>
-              <a className=" text-xl">BookShop</a>
+              <Link to="/" className=" text-xl">BookShop</Link>
             </div>
             <div className="navbar-center hidden md:flex ">
               <ul className="menu menu-horizontal px-1 ">{link} </ul>
